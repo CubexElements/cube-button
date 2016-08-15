@@ -1,19 +1,10 @@
 {
-  "name": "seed-element",
-  "version": "1.0.0",
-  "authors": [
-    "Anonymous <anonymous@example.com>"
-  ],
-  "description": "An element providing a solution to no problem in particular.",
-  "keywords": [
-    "web-component",
-    "polymer",
-    "seed"
-  ],
+  "name": "fort-button",
+  "version": "0.1.0",
   "private": true,
-  "main": "seed-element.html",
+  "main": "fort-button.html",
   "license": "MIT",
-  "homepage": "https://github.com/FortifiElements/seed-element/",
+  "homepage": "https://github.com/FortifiElements/fort-button/",
   "ignore": [
     "/.*",
     "/test/",
@@ -21,7 +12,10 @@
     "/node_modules/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.6.0"
+    "polymer": "Polymer/polymer#^1.6.0",
+    "paper-button": "PolymerElements/paper-button#1.0.13",
+    "paper-tooltip": "PolymerElements/paper-tooltip#1.1.2",
+    "fort-theme": "FortifiElements/fort-theme"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
