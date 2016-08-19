@@ -19,14 +19,6 @@ Example:
 
     <fort-button>Some button text</fort-button>
 
-Button with link example:
-
-    <fort-button href="/some-url" target="_blank">Button with link</fort-button>
-
-Disabled button example (link becomes inactive):
-
-    <fort-button href="/some-url" target="_blank" disabled>Disabled Button</fort-button>
-
 @demo demo/index.html
 -->
 
@@ -36,7 +28,6 @@ Disabled button example (link becomes inactive):
             disabled
             elevation="{{elevation}}"
             focused
-            href="{{href}}"
             keyEventTarget="{{keyEventTarget}}"
             noink
             pointerDown
@@ -44,7 +35,6 @@ Disabled button example (link becomes inactive):
             raised
             receivedFocusFromKeyboard
             stopKeyboardEventPropagation
-            target="{{target}}"
             toggles>
   <template>
     <style>
@@ -92,70 +82,36 @@ Disabled button example (link becomes inactive):
       }
     </style>
 
-    <!-- link button -->
-    <template is="dom-if" if="{{href}}">
-      <a id="link" href="{{href}}" target$="{{target}}" tabindex="-1">
-        <paper-button active$="{{active}}"
-                      ariaActiveAttribute$="{{ariaActiveAttribute}}"
-                      disabled$="{{disabled}}"
-                      elevation$="{{elevation}}"
-                      focused$="{{focused}}"
-                      href$="{{href}}"
-                      noink$="{{noink}}"
-                      pointerDown$="{{pointerDown}}"
-                      pressed$="{{pressed}}"
-                      raised$="{{raised}}"
-                      receivedFocusFromKeyboard$="{{receivedFocusFromKeyboard}}"
-                      stopKeyboardEventPropagation$="{{stopKeyboardEventPropagation}}"
-                      toggles$="{{toggles}}">
-          <content></content>
-        </paper-button>
-      </a>
-    </template>
-
-    <!-- standard (no link) button -->
-    <template is="dom-if" if="{{!href}}">
-      <paper-button id="button"
-                    active$="{{active}}"
-                    ariaActiveAttribute$="{{ariaActiveAttribute}}"
-                    disabled$="{{disabled}}"
-                    elevation$="{{elevation}}"
-                    focused$="{{focused}}"
-                    href$="{{href}}"
-                    noink$="{{noink}}"
-                    pointerDown$="{{pointerDown}}"
-                    pressed$="{{pressed}}"
-                    raised$="{{raised}}"
-                    receivedFocusFromKeyboard$="{{receivedFocusFromKeyboard}}"
-                    stopKeyboardEventPropagation$="{{stopKeyboardEventPropagation}}"
-                    toggles$="{{toggles}}">
-        <content></content>
-      </paper-button>
-    </template>
+    <paper-button id="button"
+                  active$="{{active}}"
+                  ariaActiveAttribute$="{{ariaActiveAttribute}}"
+                  disabled$="{{disabled}}"
+                  elevation$="{{elevation}}"
+                  focused$="{{focused}}"
+                  noink$="{{noink}}"
+                  pointerDown$="{{pointerDown}}"
+                  pressed$="{{pressed}}"
+                  raised$="{{raised}}"
+                  receivedFocusFromKeyboard$="{{receivedFocusFromKeyboard}}"
+                  stopKeyboardEventPropagation$="{{stopKeyboardEventPropagation}}"
+                  toggles$="{{toggles}}">
+      <content></content>
+    </paper-button>
 
   </template>
 
   <script>
     Polymer(
       {
-        is:                   'fort-button',
-        properties:           {
+        is:         'fort-button',
+        properties: {
+          /**
+           * Define button as disabled
+           */
           disabled:  {
-            type:     Boolean,
-            value:    false,
-            observer: '_disabledChanged'
+            type:  Boolean,
+            value: false
           },
-          /**
-           * If button should be a link, provide a href.
-           */
-          href:      {
-            type:  String,
-            value: null
-          },
-          /**
-           * If button is a link button, provides ability to define target to open
-           */
-          target:    String,
           /**
            * Set primary button styles
            */
@@ -171,39 +127,15 @@ Disabled button example (link becomes inactive):
             value: false
           }
         },
-        ready:                function ()
-                              {
-                                // make primary and secondary buttons raised by default.
-                                // Can override by setting elevation="0"
-                                if((this.primary || this.secondary) && !this.elevation)
-                                {
-                                  this.raised = true;
-                                }
-                              },
-        attached:             function ()
-                              {
-                                this._handleDisabledState();
-                              },
-        _disabledChanged:     function ()
-                              {
-                                this._handleDisabledState();
-                              },
-        _handleDisabledState: function ()
-                              {
-                                var link = this.querySelector('a');
-
-                                if(link)
-                                {
-                                  if(this.disabled)
-                                  {
-                                    link.setAttribute('onclick', 'return false;');
-                                  }
-                                  else
-                                  {
-                                    link.removeAttribute('onclick');
-                                  }
-                                }
-                              }
+        ready:      function ()
+                    {
+                      // make primary and secondary buttons raised by default.
+                      // Can override by setting elevation="0"
+                      if((this.primary || this.secondary) && !this.elevation)
+                      {
+                        this.raised = true;
+                      }
+                    }
       }
     );
   </script>
