@@ -1,0 +1,142 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link href="../paper-button/paper-button.html" rel="import">
+<link href="../fort-theme/fort-theme-style.html" rel="import">
+
+<!--
+A button based on paper-button, but with Fortifi styles.
+
+Example:
+
+    <fort-button>Some button text</fort-button>
+
+@demo demo/index.html
+-->
+
+<dom-module id="fort-button"
+            active
+            ariaActiveAttribute="{{ariaActiveAttribute}}"
+            disabled
+            elevation="{{elevation}}"
+            focused
+            keyEventTarget="{{keyEventTarget}}"
+            noink
+            pointerDown
+            pressed
+            raised
+            receivedFocusFromKeyboard
+            stopKeyboardEventPropagation
+            toggles>
+  <template>
+    <style>
+      :host {
+        padding: 4px 0;
+        display: inline-flex;
+      }
+
+      :host a {
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      :host paper-button {
+        color: var(--primary-500-color, rgb(61, 164, 209));
+        background-color: transparent;
+
+        --paper-button-raised-keyboard-focus: {
+          font-weight: normal;
+        };
+        --paper-button-flat-keyboard-focus: {
+          font-weight: normal;
+        };
+      }
+
+      :host[primary] paper-button {
+        color: var(--light-text);
+        background-color: var(--primary-500-color, rgb(61, 164, 209));
+      }
+
+      :host[secondary] paper-button {
+        color: var(--primary-500-color, rgb(61, 164, 209));
+        background-color: var(--light-text);
+      }
+
+      /* disabled styles */
+      :host[disabled] paper-button {
+        color: var(--disabled-text-color);
+      }
+
+      :host[primary][disabled] paper-button,
+      :host[secondary][disabled] paper-button {
+        color: var(--disabled-text-color);
+        background-color: var(--theme-50-color, rgba(0, 0, 0, 0.2));
+      }
+    </style>
+
+    <paper-button id="button"
+                  active$="{{active}}"
+                  ariaActiveAttribute$="{{ariaActiveAttribute}}"
+                  disabled$="{{disabled}}"
+                  elevation$="{{elevation}}"
+                  focused$="{{focused}}"
+                  noink$="{{noink}}"
+                  pointerDown$="{{pointerDown}}"
+                  pressed$="{{pressed}}"
+                  raised$="{{raised}}"
+                  receivedFocusFromKeyboard$="{{receivedFocusFromKeyboard}}"
+                  stopKeyboardEventPropagation$="{{stopKeyboardEventPropagation}}"
+                  toggles$="{{toggles}}">
+      <content></content>
+    </paper-button>
+
+  </template>
+
+  <script>
+    Polymer(
+      {
+        is:         'fort-button',
+        properties: {
+          /**
+           * Define button as disabled
+           */
+          disabled:  {
+            type:  Boolean,
+            value: false
+          },
+          /**
+           * Set primary button styles
+           */
+          primary:   {
+            type:  Boolean,
+            value: false
+          },
+          /**
+           * Set secondary button styles
+           */
+          secondary: {
+            type:  Boolean,
+            value: false
+          }
+        },
+        ready:      function ()
+                    {
+                      // make primary and secondary buttons raised by default.
+                      // Can override by setting elevation="0"
+                      if((this.primary || this.secondary) && !this.elevation)
+                      {
+                        this.raised = true;
+                      }
+                    }
+      }
+    );
+  </script>
+</dom-module>

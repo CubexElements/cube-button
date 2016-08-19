@@ -1,39 +1,29 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>seed-element Demo</title>
-    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../seed-element.html">
-  </head>
-  <body unresolved>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>fort-button Demo</title>
+  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-    <p>An example of <code>&lt;seed-element&gt;</code>:</p>
+  <link href="../fort-button.html" rel="import">
+  <link href="../../fort-theme/fort-theme.html" rel="import">
+</head>
+<body unresolved>
 
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
+<p>An example of <code>&lt;fort-button&gt;</code>:</p>
 
-    <seed-element author='{"name": "Lord Meowser", "image": "http://lorempixel.com/g/300/200/cats/"}' fancy>
-      <h2>Hello seed-element</h2>
-    </seed-element>
+<div>
+  <fort-button primary>Primary Button</fort-button>
+  <fort-button secondary>Secondary Button</fort-button>
+  <fort-button>Default Button</fort-button>
+</div>
 
-    <script>
-      var seedElement = document.querySelector('seed-element');
+<div>
+  <fort-button disabled primary>disabled Primary button</fort-button>
+  <fort-button disabled secondary>disabled Secondary button</fort-button>
+  <fort-button disabled>disabled Default button</fort-button>
+</div>
 
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
-
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
-
-      document.addEventListener("seed-element-lasers", function(e) {
-        console.log(e.detail.sound);
-      });
-
-    </script>
-
-  </body>
+</body>
 </html>

@@ -1,8 +1,8 @@
 _[Demo and API docs](https://elements.fortifi.it/elements/seed-element)_
 
-##&lt;seed-element&gt;
+##&lt;fort-button&gt;
 
-An element providing a starting point for your own reusable Polymer elements.
+Extends paper-button, adding fortifi styles and wrapping with anchor tag if href provided.
 
 
 ## Dependencies
@@ -30,4 +30,4 @@ And you can run it via:
     polyserve
 
 Once running, you can preview your element at
-`http://localhost:8080/components/seed-element/`, where `seed-element` is the name of the directory containing it.
+`http://localhost:8080/components/fort-button/`, where `fort-button` is the name of the directory containing it.
